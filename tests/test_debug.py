@@ -65,12 +65,4 @@ def test_parse_backtrace_extracts_backtrace():
     result = parse_backtrace(
         subprocess.CompletedProcess(args=[], returncode=0, stdout=gdb_output)
     )
-    filtered = "\n".join(
-        [
-            line
-            for line in result.splitlines()
-            if line.strip().startswith(tuple(f"#{i}" for i in range(4)))
-        ]
-    )
     assert result == expected
-
