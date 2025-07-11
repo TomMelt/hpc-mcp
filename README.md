@@ -17,7 +17,8 @@ command:
 uv run --dev pytest
 ```
 
-### Adding the MCP Server to Cursor
+### Adding the MCP Server
+#### Cursor
 
 1. Open Cursor and go to settings.
 2. Click `Tools & Integrations`
@@ -46,7 +47,27 @@ uv run --dev pytest
 }
 ```
 
-5. Test the mcp using our simple example
+#### VSCode
+
+1. Open command palette (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>p</kbd>) and select `MCP: Add Server...`
+
+![add MCP server](./imgs/vscode/step_1_command.png)
+
+2. Choose the option `command (stdio)` since the server will be run locally
+3. Type the command to run the MCP server:
+```bash
+uv --directory <path/to>/hpc-mcp run src/debug.py
+```
+4. Select reasonable name for the server e.g. "HpcMcp" (camel case is a convention)
+5. Select whether to add the server locally or globally.
+6. You can tune the settings by opening `setting.json` (global settings) or `.vscode/setting.json` (workspace settings)
+
+![add MCP server](./imgs/vscode/json_settings.png)
+
+
+### Test the MCP Server
+
+Test the mcp using our simple example
     - open terminal
     - `cd example/simple`
     - build the example using `make`
