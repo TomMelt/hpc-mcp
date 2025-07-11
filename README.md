@@ -64,10 +64,35 @@ uv --directory <path/to>/hpc-mcp run src/debug.py
 
 ![add MCP server](./imgs/vscode/json_settings.png)
 
+#### Zed
+
+1. Open [Zed](https://zed.dev/) and go to settings.
+2. Open general settings `CTRL-ALT-C`
+3. Under section Model Context Protocol (MCP) Servers click `Add Custom Server`
+4. Add the following text (changing the `<path/to>/hpc-mcp` to your actual path)
+
+```json
+{
+  /// The name of your MCP server
+  "hpc-mcp": {
+    /// The command which runs the MCP server
+    "command": "uv",
+    /// The arguments to pass to the MCP server
+    "args": [
+      "--directory",
+      "<path/to>/hpc-mcp",
+      "run",
+      "src/debug.py"
+    ],
+    /// The environment variables to set
+    "env": {}
+  }
+}
+```
 
 ### Test the MCP Server
 
-Test the mcp using our simple example
+Test the MCP using our simple example
     - open terminal
     - `cd example/simple`
     - build the example using `make`
@@ -76,9 +101,21 @@ Test the mcp using our simple example
 ```
 "debug a crash in the program examples/simple/segfault.exe"
 ```
-    - this should ask your permission to run `debug_crash` mcp tool
+    - this should ask your permission to run `debug_crash` MCP tool
     - accept and you should get a response like the following
 ![cursor-demo](./imgs/cursor-demo.png)
+
+## Running local LLMs with Ollama
+
+To run the `hpc-mcp` MCP tool with a local Ollama model use the Zed text editor. It should
+automatically detect local running ollama models and make them available. As long as you have
+installed the `hpc-mcp` MCP server in zed (see instructions [here](###-test-the-mcp-server)) it
+should be available to your models. For more info on ollama integration with zed see zed's
+[documentation](https://zed.dev/docs/ai/configuration#ollama).
+
+> [!NOTE]
+> Not all models support calling of MCP tools. I managed to have success with
+> [`qwen3:latest`](https://ollama.com/library/qwen3:latest).
 
 ## Core Dependencies
 
