@@ -93,16 +93,16 @@ uv --directory <path/to>/hpc-mcp run src/debug.py
 ### Test the MCP Server
 
 Test the MCP using our simple example
-    - open terminal
-    - `cd example/simple`
-    - build the example using `make`
-    - this should generate `segfault.exe`
-    - then type the following prompt into your IDE LLM agent
+- open terminal
+- `cd example/simple`
+- build the example using `make`
+- this should generate `segfault.exe`
+- then type the following prompt into your IDE LLM agent
 ```
 "debug a crash in the program examples/simple/segfault.exe"
 ```
-    - this should ask your permission to run `debug_crash` MCP tool
-    - accept and you should get a response like the following
+- this should ask your permission to run `debug_crash` MCP tool
+- accept and you should get a response like the following
 ![cursor-demo](./imgs/cursor-demo.png)
 
 ## Running local LLMs with Ollama
