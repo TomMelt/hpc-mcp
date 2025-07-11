@@ -1,5 +1,5 @@
 import asyncio
-from fastmcp import Client, FastMCP
+from fastmcp import Client
 
 # Local Python script
 client = Client("./src/debug.py")
@@ -12,8 +12,6 @@ async def main():
 
         # List available operations
         tools = await client.list_tools()
-        resources = await client.list_resources()
-        prompts = await client.list_prompts()
 
         print(tools)
 
