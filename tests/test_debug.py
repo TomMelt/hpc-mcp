@@ -20,7 +20,7 @@ from debug import parse_backtrace
         (
             "./path/to/binary.exe",
             [],
-            "gdb -q --batch -ex b _exit -ex run -ex bt -ex quit --args ./path/to/binary.exe",
+            "gdb -q --batch -ex b _ext -ex run -ex bt -ex quit --args ./path/to/binary.exe",
         ),
     ],
 )
