@@ -2,6 +2,7 @@ import pytest
 import subprocess
 from debug import generate_debug_cmd
 from debug import parse_backtrace
+from debug import select_valgrind_lines
 
 
 @pytest.mark.parametrize(
@@ -66,3 +67,19 @@ def test_parse_backtrace_extracts_backtrace():
         subprocess.CompletedProcess(args=[], returncode=0, stdout=gdb_output)
     )
     assert result == expected
+
+
+def test_select_valgrind_lines():
+    pid = 7688
+    valgrind_lines = [
+        f"=={pid}== Memcheck, a memory error detector",
+        f"=={pid}== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.",
+        f"=={pid}== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info",
+        f"=={pid}== Command: examples/dangling/dangling.exe",
+        f"=={pid}==",
+    ]
+    non_valgrind_lines = ["some string", "some more string", "even more string"]
+    # TODO: Interleave the other lines
+    valgrind_stderr = "\n".join(valgrind_lines + non_valgrind_lines)
+
+    assert valgrind_lines == select_valgrind_lines(valgrind_stderr).splitlines()
