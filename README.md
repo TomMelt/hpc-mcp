@@ -4,6 +4,10 @@ This project provides MCP tools for HPC. These are designed to integrate with LL
 is to integrate with LLMs called from IDEs such as [cursor](https://cursor.com/) and
 [vscode](https://code.visualstudio.com/).
 
+<a href="https://glama.ai/mcp/servers/@TomMelt/hpc-mcp">
+  <img width="380" height="200" src="https://glama.ai/mcp/servers/@TomMelt/hpc-mcp/badge" alt="HPC-MCP MCP server" />
+</a>
+
 ## Quick Start Guide :rocket:
 
 This project uses [uv](https://github.com/astral-sh/uv) for dependency management and installation.
