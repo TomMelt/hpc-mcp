@@ -1,6 +1,7 @@
 import pytest
 from profiler import generate_profile_cmd
 
+
 @pytest.mark.parametrize(
     "target,args,expected",
     [

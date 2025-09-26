@@ -4,6 +4,7 @@ from fastmcp import FastMCP
 
 mcp = FastMCP(name="Profile")
 
+
 @mcp.tool
 def profile(target: str, args: list[str]) -> str:
     """
@@ -27,14 +28,16 @@ def profile(target: str, args: list[str]) -> str:
     """
     # run profiler with target binary and args
     profile_cmd = generate_profile_cmd(target, args)
-    profile_output = subprocess.run(shlex.split(profile_cmd), capture_output=True, check=True)
+    profile_output = subprocess.run(
+        shlex.split(profile_cmd), capture_output=True, check=True
+    )
     return clean_profile_data(profile_output.stdout.decode("utf-8"))
-    
 
 
 def generate_profile_cmd(target: str, args: list[str]) -> str:
     """Create the profile command."""
     return shlex.join(["sudo", "./perf_profiler", target] + args)
+
 
 def clean_profile_data(profile_data: str) -> str:
     """Clean the profile data."""
