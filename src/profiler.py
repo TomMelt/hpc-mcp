@@ -26,11 +26,15 @@ def profile(target: str, args: list[str]) -> str:
         Cleaned profile data
     """
     # run profiler with target binary and args
-    profile_cmd = shlex.join(["sudo", "./perf_profiler", target] + args)
+    profile_cmd = generate_profile_cmd(target, args)
     profile_output = subprocess.run(shlex.split(profile_cmd), capture_output=True, check=True)
     return clean_profile_data(profile_output.stdout.decode("utf-8"))
     
 
+
+def generate_profile_cmd(target: str, args: list[str]) -> str:
+    """Create the profile command."""
+    return shlex.join(["sudo", "./perf_profiler", target] + args)
 
 def clean_profile_data(profile_data: str) -> str:
     """Clean the profile data."""
