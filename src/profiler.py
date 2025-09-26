@@ -69,3 +69,7 @@ def clean_profile_data(profile_data: str) -> str:
             )
         ]
     )
+
+
+if __name__ == "__main__":
+    mcp.run(transport="stdio")
