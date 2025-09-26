@@ -34,7 +34,11 @@ def profile(target: str, args: list[str]) -> str:
     profile_output = subprocess.run(
         shlex.split(profile_cmd), capture_output=True, check=True
     )
-    return clean_profile_data(profile_output.stdout.decode("utf-8"))
+
+    with open("profile.out", "r") as f:
+        profile_data = f.read()
+
+        return clean_profile_data(profile_data)
 
 
 def generate_profile_cmd(target: str, args: list[str]) -> str:
