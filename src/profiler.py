@@ -48,13 +48,20 @@ def clean_profile_data(profile_data: str) -> str:
     function_call_counts = defaultdict(int)
 
     for line in profile_data.splitlines():
-        counts, functions = line.strip().split(' ', 1)[0], line.strip().split(' ', 1)[1]
+        counts, functions = line.strip().split(" ", 1)[0], line.strip().split(" ", 1)[1]
 
         functions_present = functions.strip().split(";")
 
         for function in functions_present:
-            function_call_counts[function] = function_call_counts[function] + int(counts)
+            function_call_counts[function] = function_call_counts[function] + int(
+                counts
+            )
 
-
-    
-    return "\n".join([f"{count} {function}" for function, count in sorted(function_call_counts.items(), key=lambda x: x[1], reverse=True)])
+    return "\n".join(
+        [
+            f"{count} {function}"
+            for function, count in sorted(
+                function_call_counts.items(), key=lambda x: x[1], reverse=True
+            )
+        ]
+    )
